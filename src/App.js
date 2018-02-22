@@ -25,9 +25,9 @@ class App extends Component {
            <h3>Welcome to React + GraphQL + Apollo minimal boilerplate</h3>
            
          </div>
-         <p>{data.quertSample1}</p>
+         <p>{data.querySample1}</p>
          <br/>
-         <p>{data.quertSample2}</p>
+         <p>{data.querySample2}</p>
        </div>
      );
    }
@@ -35,8 +35,8 @@ class App extends Component {
 
 const MY_QUERY = gql`
   query hello {
-    quertSample1,
-    quertSample2
+    querySample1,
+    querySample2
   }`;
 
 const AppWithData = graphql(MY_QUERY)(App); 
