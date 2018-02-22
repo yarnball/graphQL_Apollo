@@ -1,23 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg'
-import './App.css'
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+import logo from './logo.svg';
+import './App.css';
 
-const ChannelsList = () =>
-     (<ul>
-       <li>Channel 1</li>
-       <li>Channel 2</li>
-     </ul>);
 class App extends Component {
+
    render() {
+
+     let { data } = this.props
+     console.log('ta', data)
+     if (data.varibles) {
+        return (<div>Loading</div>)
+     }
+
+     if(data.error) {
+       return (<div>An unexpected error occurred</div>)
+     }
+
      return (
        <div className="App">
          <div className="App-header">
            <img src={logo} className="App-logo" alt="logo" />
-           <h2>Welcome to Apollo</h2>
+           <h3>Welcome to React + GraphQL + Apollo minimal boilerplate</h3>
+           
          </div>
-         <ChannelsList />
+         <p>{data.quertSample1}</p>
+         <br/>
+         <p>{data.quertSample2}</p>
        </div>
      );
    }
  }
-export default App;
+
+const MY_QUERY = gql`
+  query hello {
+    quertSample1,
+    quertSample2
+  }`;
+
+const AppWithData = graphql(MY_QUERY)(App); 
+export default AppWithData;
